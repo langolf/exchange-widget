@@ -1,0 +1,14 @@
+.root {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    flex: 0 0 auto;
+}
+
+.content {
+    flex: 1;
+}

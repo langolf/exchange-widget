@@ -1,5 +1,5 @@
 export const CurrencyTypes = {
-    GBP: 'gbp',
-    EUR: 'eur',
-    USD: 'usd',
+    GBP: 'GBP',
+    EUR: 'EUR',
+    USD: 'USD',
 };
