@@ -5,27 +5,21 @@ import Selector from '../Selector/Selector.js';
 import Balance from '../Balance/Balance.js';
 import style from './CurrencyField.module.css';
 import StatusLine from '../StatusLine/StatusLine.js';
-
-const currencyList = {
-    GBP: 'gbp',
-    EUR: 'eur',
-    USD: 'usd',
-};
+import { CurrencyTypes } from '../../enum.js';
 
 const CurrencyField = props => {
     const [value, setValue] = useState(null);
 
     return (
-        <form className={style.root}>
-            <h1>Exchange</h1>
+        <div className={style.root}>
             <div className={style.field}>
                 <div className={style.fieldSelector}>
                     <Selector
                         onChange={event => {
                             console.log(event);
                         }}
-                        activeItem={currencyList.USD}
-                        list={currencyList}
+                        activeItem={CurrencyTypes.USD}
+                        list={CurrencyTypes}
                     />
                 </div>
                 <div className={style.fieldInput}>
@@ -42,7 +36,7 @@ const CurrencyField = props => {
                     <StatusLine message={'hello'} />
                 </div>
             </div>
-        </form>
+        </div>
     );
 };
 

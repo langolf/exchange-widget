@@ -1,0 +1,7 @@
+.root {
+    background: #c80378;
+    box-shadow: 0 9px 10px -3px rgba(163, 0, 97, 0.48);
+    border-radius: 28px;
+    font-size: 15px;
+    color: #fff;
+}
