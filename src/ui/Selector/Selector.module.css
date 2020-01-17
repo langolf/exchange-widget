@@ -1,0 +1,23 @@
+.root {
+    display: flex;
+    align-items: center;
+}
+
+.control {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    font-size: 32px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+}
+
+.icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+

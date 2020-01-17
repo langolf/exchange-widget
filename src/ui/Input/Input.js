@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Input.module.css';
 
 const Input = props => {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(props.value);
 
     const handleChange = event => {
         if (props.onChange) {
@@ -18,7 +18,9 @@ const Input = props => {
                 value={value}
                 type="text"
                 inputMode="numeric"
-                pattern="[0-9]"
+                pattern="[0-9]+"
+                placeholder="0"
+                className={styles.input}
                 onChange={handleChange}
             />
         </div>
