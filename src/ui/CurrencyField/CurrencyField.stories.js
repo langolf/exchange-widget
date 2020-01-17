@@ -11,4 +11,4 @@ export default {
     },
 };
 
-export const initial = () => <CurrencyField />;
+export const initial = () => <CurrencyField balance={20} type="usd" />;
