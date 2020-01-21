@@ -63,7 +63,10 @@ function ExchangeForm({ pair }) {
           <span>$1 = $1</span>
         </div>
       </div>
-      <PrimaryButton text="Hello World" />
+
+      <footer className={style.actions}>
+        <PrimaryButton type="submit" text="Hello World" />
+      </footer>
     </form>
   );
 }

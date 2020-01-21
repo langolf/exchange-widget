@@ -1,5 +1,6 @@
-.root {
+.button {
     display: inline-flex;
     border: 0;
     background: none;
+    justify-content: center;
 }

@@ -4,6 +4,7 @@ import Input from "../Input/Input.js";
 import Selector from "../Selector/Selector.js";
 import style from "./CurrencyField.module.css";
 import { CurrencyTypes } from "../../enum.js";
+import CurrencyFieldInput from "./CurrencyFieldInput";
 
 const CurrencyField = ({
   activeItem,
@@ -24,7 +25,7 @@ const CurrencyField = ({
         </div>
 
         <div className={style.fieldInput}>
-          <Input onChange={onCurrencyValueChange} value={value} />
+          <CurrencyFieldInput onChange={onCurrencyValueChange} value={value} />
         </div>
       </div>
 

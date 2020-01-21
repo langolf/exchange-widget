@@ -2,6 +2,7 @@
     background: #c80378;
     box-shadow: 0 9px 10px -3px rgba(163, 0, 97, 0.48);
     border-radius: 28px;
-    font-size: 15px;
+    font: 600 15px/18px -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     color: #fff;
+    padding: 15px 6px;
 }

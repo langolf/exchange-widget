@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Input.module.css";
 
-const Input = ({ value, onChange }) => {
+const Input = ({ value, onChange, ...props }) => {
   return (
     <div className={styles.root}>
       <input
         value={value}
-        type="text"
-        inputMode="numeric"
-        pattern="[0-9]*"
-        placeholder="0"
+        type={props.type || "text"}
         className={styles.input}
         onChange={onChange}
       />

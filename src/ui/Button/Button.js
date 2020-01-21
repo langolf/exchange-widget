@@ -1,14 +1,21 @@
-import React from 'react';
+import React from "react";
+import clsx from "clsx";
 
-import style from './Button.module.css';
+import style from "./Button.module.css";
 
-const Button = props => {
-    const { type, children } = props;
-    return (
-        <button className={style.root} type={type} {...props}>
-            <span>{children}</span>
-        </button>
-    );
+const Button = ({ children, className, ...props }) => {
+  return (
+    <button
+      className={clsx({
+        [style.button]: true,
+        [className]: true
+      })}
+      type={props.type || "button"}
+      {...props}
+    >
+      <span>{children}</span>
+    </button>
+  );
 };
 
 export default Button;
