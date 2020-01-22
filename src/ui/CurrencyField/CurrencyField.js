@@ -1,9 +1,7 @@
 import React, { useState, useRef, useDebugValue } from "react";
-import PropTypes from "prop-types";
-import Input from "../Input/Input.js";
 import Selector from "../Selector/Selector.js";
 import style from "./CurrencyField.module.css";
-import { CurrencyTypes } from "../../enum.js";
+import { CurrencyTypes, useAppContext } from "hooks/app-context";
 import CurrencyFieldInput from "./CurrencyFieldInput";
 
 const CurrencyField = ({
@@ -13,6 +11,8 @@ const CurrencyField = ({
   onCurrencyTypeChange,
   onCurrencyValueChange
 }) => {
+  const { state, dispatch } = useAppContext();
+
   return (
     <div className={style.root}>
       <div className={style.field}>
@@ -20,19 +20,23 @@ const CurrencyField = ({
           <Selector
             onChange={onCurrencyTypeChange}
             activeItem={activeItem}
-            list={CurrencyTypes}
+            list={Object.values(CurrencyTypes)}
           />
         </div>
 
         <div className={style.fieldInput}>
-          <CurrencyFieldInput onChange={onCurrencyValueChange} value={value} />
+          <CurrencyFieldInput
+            onChange={onCurrencyValueChange}
+            value={value}
+            placeholder="0"
+          />
         </div>
       </div>
 
       <div className={style.status}>
         <div className={style.balance}>
           <span>Balance: </span>
-          <span></span>
+          {CurrencyTypes[activeItem].sign}
           {balance}
         </div>
 
@@ -42,12 +46,6 @@ const CurrencyField = ({
       </div>
     </div>
   );
-};
-
-// todo: create global enums
-CurrencyField.propTypes = {
-  type: PropTypes.oneOf(Object.keys(CurrencyTypes)),
-  balance: PropTypes.number
 };
 
 export default CurrencyField;

@@ -1,0 +1,65 @@
+.root {
+  display: block;
+}
+
+.entry {
+  padding: 30px 0;
+}
+
+.entry:first-child {
+  background: #fff;
+}
+
+.fields {
+  position: relative;
+}
+
+.swap {
+  position: absolute;
+  left: 28px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #f3f4f5;
+  border-radius: 100px;
+  background: #fff;
+  display: flex;
+  color: #0075eb;
+}
+
+.swapIcon {
+  width: 22px;
+  height: 22px;
+  margin: auto;
+}
+
+.chart {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  font-size: 15px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: #0075eb;
+  height: 32px;
+  padding: 0 10px;
+  border: 2px solid #f3f4f5;
+  border-radius: 100px;
+  background: #fff;
+}
+
+.chartIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  padding: 0 25px;
+}
