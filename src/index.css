@@ -18,6 +18,7 @@ body {
   text-rendering: geometricPrecision;
   font-kerning: normal;
   height: 100%;
+  background: #000;
 }
 
 code {

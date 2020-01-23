@@ -1,11 +1,12 @@
 import React from 'react';
 import style from './Screen.module.css';
+import { Link } from 'react-router-dom';
 
 const Screen = props => {
   return (
     <section className={style.root}>
       <header className={style.header}>
-        <div onClick={() => {}}>Back</div>
+        <Link to="/">Back</Link>
         <h1 className={style.title}>{props.title}</h1>
       </header>
 

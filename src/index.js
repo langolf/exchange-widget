@@ -8,27 +8,40 @@ import { BrowserRouter, Switch, Route, Link, useLocation } from 'react-router-do
 import ScreenExchangeForm from './ui/ScreenExchangeForm/ScreenExchangeForm';
 import ScreenChart from './ui/ScreenChart/ScreenChart';
 import { AppProvider, useAppContext } from 'hooks/app-context';
+import Screen from './ui/Screen/Screen';
 
 export default function App() {
   const { state, dispatch } = useAppContext();
   const location = useLocation();
   const transitions = useTransition(location, location => location.pathname, {
-    from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
-    enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-    leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
+    from: { opacity: 0.8, transform: 'translate3d(0,50%,0) scale(1.6)' },
+    enter: { opacity: 1, transform: 'translate3d(0,2%,0) scale(1)' },
+    leave: { opacity: 0.8, transform: 'translate3d(0,-4%,0) scale(0.8)' },
   });
 
   return (
     <AppProvider>
       <div className="app">
         {transitions.map(({ item: location, props, key }) => (
-          <animated.div key={key} style={props}>
+          <animated.div
+            key={key}
+            style={{ position: 'fixed', width: '100vw', height: '100vh', ...props }}
+          >
             <Switch location={location}>
               <Route path="/" exact>
-                <ScreenExchangeForm />
+                <Screen>
+                  <div>Current balance</div>
+                  <div className="vault-actions">
+                    <div>Add money</div>
+                    <div>
+                      <Link to="/exchange">Exchange</Link>
+                    </div>
+                    <div>DEtails</div>
+                  </div>
+                </Screen>
               </Route>
-              <Route path="/chart" exact>
-                <ScreenChart />
+              <Route path="/exchange" exact>
+                <ScreenExchangeForm />
               </Route>
             </Switch>
           </animated.div>

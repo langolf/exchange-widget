@@ -9,7 +9,7 @@ const ExchangeFormChartAction = props => {
   const { state, dispatch } = useAppContext();
 
   return (
-    <Link className={style.chart} to="/chart">
+    <div className={style.chart} onClick={props.onClick}>
       <div className={style.chartIcon}>
         <Icon>
           <IconRiseChart />
@@ -19,7 +19,7 @@ const ExchangeFormChartAction = props => {
         {CurrencyTypes[state.exchange[0].code].sign}1 = {CurrencyTypes[state.exchange[1].code].sign}
         1
       </span>
-    </Link>
+    </div>
   );
 };
 

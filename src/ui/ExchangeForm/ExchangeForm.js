@@ -7,7 +7,7 @@ import { CurrencyTypes, useAppContext } from '../../hooks/app-context';
 import ExchangeFormSwapAction from './ExchangeFormSwapAction';
 import ExchangeFormChartAction from './ExchangeFormChartAction';
 
-function ExchangeForm({ pair }) {
+function ExchangeForm(props) {
   const { state, dispatch } = useAppContext();
 
   const handleSubmit = event => {
@@ -62,11 +62,7 @@ function ExchangeForm({ pair }) {
           }}
         />
 
-        <ExchangeFormChartAction
-          onClick={() => {
-            dispatch({ type: 'CHART' });
-          }}
-        />
+        <ExchangeFormChartAction onClick={props.onClickChartAction} />
       </div>
 
       <footer className={style.actions}>
