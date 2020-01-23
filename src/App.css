@@ -1,3 +1,7 @@
+:root {
+  --link-color: #0275eb;
+}
+
 .App {
   text-align: center;
 }

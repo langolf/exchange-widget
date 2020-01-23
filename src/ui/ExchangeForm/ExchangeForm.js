@@ -1,11 +1,11 @@
-import React, { useState, useReducer, useRef, useContext } from "react";
-import CurrencyField from "../CurrencyField/CurrencyField.js";
-import PrimaryButton from "../PrimaryButton/PrimaryButton.js";
-import style from "./ExchangeForm.module.css";
+import React, { useState, useReducer, useRef, useContext } from 'react';
+import CurrencyField from '../CurrencyField/CurrencyField.js';
+import PrimaryButton from '../PrimaryButton/PrimaryButton.js';
+import style from './ExchangeForm.module.css';
 
-import { useAppContext } from "../../hooks/app-context";
-import ExchangeFormSwapAction from "./ExchangeFormSwapAction";
-import ExchangeFormChartAction from "./ExchangeFormChartAction";
+import { CurrencyTypes, useAppContext } from '../../hooks/app-context';
+import ExchangeFormSwapAction from './ExchangeFormSwapAction';
+import ExchangeFormChartAction from './ExchangeFormChartAction';
 
 function ExchangeForm({ pair }) {
   const { state, dispatch } = useAppContext();
@@ -22,33 +22,49 @@ function ExchangeForm({ pair }) {
             <div className={style.entry}>
               <CurrencyField
                 key={`${field}`}
+                id={`${field}`}
                 activeItem={code}
-                onCurrencyTypeChange={event => {
-                  dispatch({ type: "CHANGE", code: event.target.value, field });
+                onCurrencyTypeChange={value => {
+                  dispatch({ type: 'CHANGE', code: value, field });
+                }}
+                onMouseDown={event => {
+                  event.stopPropagation();
+                  debugger;
                 }}
                 onCurrencyValueChange={event => {
                   dispatch({
-                    type: "VALUE",
+                    type: 'VALUE',
                     amount: event.target.value,
-                    field
+                    field,
                   });
                 }}
                 value={value}
-                balance={state.pocket.vault[code].balance}
-              />
+              >
+                <div className={style.status}>
+                  <div className={style.balance}>
+                    <span>Balance: </span>
+                    {CurrencyTypes[code].sign}
+                    {state.pocket.vault[code].balance.toFixed(2)}
+                  </div>
+
+                  <div className={style.message}>
+                    <span>not enough funds</span>
+                  </div>
+                </div>
+              </CurrencyField>
             </div>
           );
         })}
 
         <ExchangeFormSwapAction
           onClick={() => {
-            dispatch({ type: "SWAP" });
+            dispatch({ type: 'SWAP' });
           }}
         />
 
         <ExchangeFormChartAction
           onClick={() => {
-            dispatch({ type: "CHART" });
+            dispatch({ type: 'CHART' });
           }}
         />
       </div>

@@ -5,6 +5,7 @@ const Screen = props => {
   return (
     <section className={style.root}>
       <header className={style.header}>
+        <div onClick={() => {}}>Back</div>
         <h1 className={style.title}>{props.title}</h1>
       </header>
 

@@ -1,51 +1,56 @@
-import React, { useReducer } from "react";
-import constate from "constate";
+import React, { useReducer } from 'react';
+import constate from 'constate';
 
 const [AppProvider, useAppContext] = constate(useApp);
 
 export const CurrencyTypes = {
   GBP: {
-    code: "GBP",
-    sign: "£"
+    code: 'GBP',
+    sign: '£',
   },
   EUR: {
-    code: "EUR",
-    sign: "€"
+    code: 'EUR',
+    sign: '€',
   },
   USD: {
-    code: "USD",
-    sign: "$"
-  }
+    code: 'USD',
+    sign: '$',
+  },
+};
+
+export const AppScreen = {
+  EXCHANGE: 'EXCHANGE',
+  CHART: 'CHART',
 };
 
 export const initialState = {
   pocket: {
-    baseCurrency: "GBP",
+    baseCurrency: 'GBP',
     vault: {
-      GBP: { code: "GBP", balance: 23 },
-      EUR: { code: "EUR", balance: 11 },
-      USD: { code: "USD", balance: 0 }
-    }
+      GBP: { code: 'GBP', balance: 23.23 },
+      EUR: { code: 'EUR', balance: 11.2432234 },
+      USD: { code: 'USD', balance: 0.0 },
+    },
   },
   // from-to should not change thier position. only codes
   exchange: [
-    { code: "GBP", value: "", field: "from" },
-    { code: "EUR", value: "", field: "to" }
-  ]
+    { code: 'GBP', value: '', field: 'from' },
+    { code: 'EUR', value: '', field: 'to' },
+  ],
+  modalIsOpen: false,
+  page: [AppScreen.EXCHANGE],
 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case "VALUE":
+    case 'VALUE':
       return {
         ...state,
         exchange: state.exchange.map(entry =>
-          entry.field === action.field
-            ? { ...entry, value: action.amount }
-            : entry
-        )
+          entry.field === action.field ? { ...entry, value: action.amount } : entry,
+        ),
       };
-    case "CHANGE":
+    case 'CHANGE':
       return {
         ...state,
         exchange: state.exchange.map(entry => {
@@ -56,19 +61,22 @@ function reducer(state, action) {
           if (entry.code === action.code) {
             return {
               ...entry,
-              code: Object.values(CurrencyTypes).find(
-                el => el.code !== action.code
-              ).code
+              code: Object.values(CurrencyTypes).find(el => el.code !== action.code).code,
             };
           }
 
           return entry;
-        })
+        }),
       };
-    case "SWAP":
+    case 'SWAP':
       return {
         ...state,
-        exchange: [state.exchange[1], state.exchange[0]]
+        exchange: [state.exchange[1], state.exchange[0]],
+      };
+    case 'MODAL_OPEN':
+      return {
+        ...state,
+        modalIsOpen: !state.modalIsOpen,
       };
     default:
       return state;

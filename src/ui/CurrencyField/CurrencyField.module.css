@@ -17,21 +17,30 @@
   flex: 1 1 auto;
 }
 
-.status {
+.selectorList {
   display: flex;
+  flex-direction: column;
+}
+
+.selectorList li {
+  display: inline-flex;
   align-items: center;
-  font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+  padding: 12px 15px;
+  color: var(--link-color);
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  border-bottom: 1px solid #e2e2e2;
 }
 
-.balance {
-  flex: 0 0 50%;
+.selectorList li:first-child {
+  border-top: 1px solid #e2e2e2;
 }
 
-.message {
-  flex: 0 0 50%;
-  display: flex;
-  justify-content: flex-end;
+.flag {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-position: center;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06) inset;
+  margin-right: 15px;
 }
