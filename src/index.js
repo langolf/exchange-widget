@@ -20,7 +20,7 @@ export default function App() {
   });
 
   return (
-    <AppProvider>
+      <AppProvider>
       <div className="app">
         {transitions.map(({ item: location, props, key }) => (
           <animated.div
