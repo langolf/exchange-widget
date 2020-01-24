@@ -17,7 +17,7 @@ const ExchangeFormChartAction = props => {
       </div>
       <span>
         {CurrencyTypes[state.exchange[0].code].sign}1 = {CurrencyTypes[state.exchange[1].code].sign}
-        1
+        {props.ratio}
       </span>
     </div>
   );

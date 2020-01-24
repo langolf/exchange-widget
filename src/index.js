@@ -20,13 +20,10 @@ export default function App() {
   });
 
   return (
-      <AppProvider>
+    <AppProvider>
       <div className="app">
         {transitions.map(({ item: location, props, key }) => (
-          <animated.div
-            key={key}
-            style={{ position: 'fixed', width: '100vw', height: '100vh', ...props }}
-          >
+          <animated.div key={key} style={{ position: 'fixed', width: '100vw', height: '100vh', ...props }}>
             <Switch location={location}>
               <Route path="/" exact>
                 <Screen>
@@ -40,6 +37,7 @@ export default function App() {
                   </div>
                 </Screen>
               </Route>
+
               <Route path="/exchange" exact>
                 <ScreenExchangeForm />
               </Route>
@@ -55,7 +53,7 @@ render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

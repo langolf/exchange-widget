@@ -2,6 +2,7 @@ import React, { useState, useReducer, useRef, useContext } from 'react';
 import CurrencyField from '../CurrencyField/CurrencyField.js';
 import PrimaryButton from '../PrimaryButton/PrimaryButton.js';
 import style from './ExchangeForm.module.css';
+import useFetch from 'react-fetch-hook';
 
 import { CurrencyTypes, useAppContext } from '../../hooks/app-context';
 import ExchangeFormSwapAction from './ExchangeFormSwapAction';
@@ -9,6 +10,11 @@ import ExchangeFormChartAction from './ExchangeFormChartAction';
 
 function ExchangeForm(props) {
   const { state, dispatch } = useAppContext();
+  const { isLoading, data } = useFetch(
+    `https://api.exchangeratesapi.io/latest?&base=${state.exchange[0].code}&symbols=${state.exchange[1].code}`
+  );
+
+  const [currencyToFieldValue, setCurrencyToFieldValue] = useState(0);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -37,6 +43,8 @@ function ExchangeForm(props) {
                     amount: event.target.value,
                     field,
                   });
+                  setCurrencyToFieldValue(parseFloat(state.exchange[0].value) * data.rates[state.exchange[1].code]);
+                  console.log(currencyToFieldValue);
                 }}
                 value={value}
               >
@@ -62,7 +70,9 @@ function ExchangeForm(props) {
           }}
         />
 
-        <ExchangeFormChartAction onClick={props.onClickChartAction} />
+        {!isLoading && (
+          <ExchangeFormChartAction onClick={props.onClickChartAction} ratio={data.rates[state.exchange[1].code]} />
+        )}
       </div>
 
       <footer className={style.actions}>
