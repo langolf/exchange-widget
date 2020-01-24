@@ -1,0 +1,45 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.boardCurrencyLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boardCurrencyValue {
+  position: relative;
+}
+
+.boardCurrencyValue strong {
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.boardCurrencyValue small {
+  font-size: 26px;
+}
+
+.boardCurrencyHandler {
+  width: 15px;
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.boardCurrencyDescription {
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.boardCurrencyDescription > * + * {
+  margin-left: 10px;
+}

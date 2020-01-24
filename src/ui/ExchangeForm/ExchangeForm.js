@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useRef, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import CurrencyField from '../CurrencyField/CurrencyField.js';
 import PrimaryButton from '../PrimaryButton/PrimaryButton.js';
 import style from './ExchangeForm.module.css';
@@ -14,6 +14,10 @@ function ExchangeForm(props) {
     `https://api.exchangeratesapi.io/latest?&base=${state.exchange[0].code}&symbols=${state.exchange[1].code}`
   );
 
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
+
   const [currencyToFieldValue, setCurrencyToFieldValue] = useState(0);
 
   const handleSubmit = event => {
@@ -28,14 +32,9 @@ function ExchangeForm(props) {
             <div className={style.entry}>
               <CurrencyField
                 key={`${field}`}
-                id={`${field}`}
                 activeItem={code}
                 onCurrencyTypeChange={value => {
                   dispatch({ type: 'CHANGE', code: value, field });
-                }}
-                onMouseDown={event => {
-                  event.stopPropagation();
-                  debugger;
                 }}
                 onCurrencyValueChange={event => {
                   dispatch({
@@ -44,7 +43,6 @@ function ExchangeForm(props) {
                     field,
                   });
                   setCurrencyToFieldValue(parseFloat(state.exchange[0].value) * data.rates[state.exchange[1].code]);
-                  console.log(currencyToFieldValue);
                 }}
                 value={value}
               >
@@ -52,7 +50,7 @@ function ExchangeForm(props) {
                   <div className={style.balance}>
                     <span>Balance: </span>
                     {CurrencyTypes[code].sign}
-                    {state.pocket.vault[code].balance.toFixed(2)}
+                    {state.pocket.vault[code].balance}
                   </div>
 
                   <div className={style.message}>

@@ -6,6 +6,7 @@
   border-radius: 10px;
   overflow: hidden;
   flex-direction: column;
+  background-color: #fff;
 }
 
 .header {
@@ -13,6 +14,7 @@
   display: flex;
   background-color: #fff;
   align-items: center;
+  position: relative;
   justify-content: center;
 }
 
@@ -25,4 +27,14 @@
   flex: 1 1 auto;
   min-height: 0;
   min-width: 0;
+}
+
+.close {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
 }

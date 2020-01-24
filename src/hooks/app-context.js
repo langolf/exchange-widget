@@ -47,7 +47,7 @@ function reducer(state, action) {
       return {
         ...state,
         exchange: state.exchange.map(entry =>
-          entry.field === action.field ? { ...entry, value: action.amount } : entry,
+          entry.field === action.field ? { ...entry, value: action.amount } : entry
         ),
       };
     case 'CHANGE':

@@ -1,14 +1,14 @@
 import React from 'react';
 import * as serviceWorker from './serviceWorker';
+import 'normalize.css';
+import 'currency-flags/dist/currency-flags.css';
 import { render } from 'react-dom';
 import './index.css';
-import Modal from 'react-modal';
 import { useSpring, animated, useTransition } from 'react-spring';
 import { BrowserRouter, Switch, Route, Link, useLocation } from 'react-router-dom';
 import ScreenExchangeForm from './ui/ScreenExchangeForm/ScreenExchangeForm';
-import ScreenChart from './ui/ScreenChart/ScreenChart';
 import { AppProvider, useAppContext } from 'hooks/app-context';
-import Screen from './ui/Screen/Screen';
+import ScreenStart from 'ui/ScreenStart/ScreenStart';
 
 export default function App() {
   const { state, dispatch } = useAppContext();
@@ -26,16 +26,7 @@ export default function App() {
           <animated.div key={key} style={{ position: 'fixed', width: '100vw', height: '100vh', ...props }}>
             <Switch location={location}>
               <Route path="/" exact>
-                <Screen>
-                  <div>Current balance</div>
-                  <div className="vault-actions">
-                    <div>Add money</div>
-                    <div>
-                      <Link to="/exchange">Exchange</Link>
-                    </div>
-                    <div>DEtails</div>
-                  </div>
-                </Screen>
+                <ScreenStart />
               </Route>
 
               <Route path="/exchange" exact>
