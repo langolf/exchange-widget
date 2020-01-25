@@ -2,7 +2,7 @@ import React from 'react';
 import Screen from 'ui/Screen/Screen';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-import { useAppContext, CurrencyTypes } from 'hooks/app-context';
+import { useAppContext } from 'hooks/app-context';
 import Icon from 'ui/Icon/Icon';
 import { ReactComponent as IconArrow } from './icon-arrow-down.svg';
 import currencyList from 'hooks/currencies';
@@ -19,7 +19,7 @@ const ScreenStart = props => {
         <div className={style.boardCurrencyLine}>
           <div className={style.boardCurrencyValue}>
             <strong>
-              {CurrencyTypes.GBP.sign}
+              {currencyList.GBP.currencySymbol}
               {base}
               {float && <small>.{float}</small>}
             </strong>

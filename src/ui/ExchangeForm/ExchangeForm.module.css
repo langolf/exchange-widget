@@ -10,7 +10,7 @@
   background: #fff;
 }
 
-.fields {
+.fieldGroup {
   position: relative;
 }
 
@@ -35,20 +35,26 @@
 }
 
 .chart {
+  position: absolute;
   display: flex;
   align-items: center;
-  position: absolute;
-  font-size: 15px;
+  justify-content: center;
+  transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  color: #0075eb;
   height: 32px;
   padding: 0 10px;
   border: 2px solid #f3f4f5;
   border-radius: 100px;
   background: #fff;
+  overflow: hidden;
+}
+
+.chartLine {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #0075eb;
 }
 
 .chartIcon {
@@ -68,8 +74,9 @@
   align-items: center;
   color: #8a95a0;
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
 }
 
 .balance {

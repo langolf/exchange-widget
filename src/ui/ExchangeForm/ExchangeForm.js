@@ -3,22 +3,15 @@ import CurrencyField from '../CurrencyField/CurrencyField.js';
 import PrimaryButton from '../PrimaryButton/PrimaryButton.js';
 import style from './ExchangeForm.module.css';
 import useFetch from 'react-fetch-hook';
+import { animated, useSpring } from 'react-spring';
 
-import { CurrencyTypes, useAppContext } from '../../hooks/app-context';
+import currencyList from 'hooks/currencies';
+import { useAppContext } from 'hooks/app-context';
 import ExchangeFormSwapAction from './ExchangeFormSwapAction';
-import ExchangeFormChartAction from './ExchangeFormChartAction';
+import ExchangeFormRatioInfo from './ExchangeFormRatioInfo';
 
 function ExchangeForm(props) {
   const { state, dispatch } = useAppContext();
-  const { isLoading, data } = useFetch(
-    `https://api.exchangeratesapi.io/latest?&base=${state.exchange[0].code}&symbols=${state.exchange[1].code}`
-  );
-
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
-  const [currencyToFieldValue, setCurrencyToFieldValue] = useState(0);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -26,41 +19,38 @@ function ExchangeForm(props) {
 
   return (
     <form className={style.root} onSubmit={handleSubmit}>
-      <div className={style.fields}>
-        {state.exchange.map(({ field, code, value }) => {
-          return (
-            <div className={style.entry}>
-              <CurrencyField
-                key={`${field}`}
-                activeItem={code}
-                onCurrencyTypeChange={value => {
-                  dispatch({ type: 'CHANGE', code: value, field });
-                }}
-                onCurrencyValueChange={event => {
-                  dispatch({
-                    type: 'VALUE',
-                    amount: event.target.value,
-                    field,
-                  });
-                  setCurrencyToFieldValue(parseFloat(state.exchange[0].value) * data.rates[state.exchange[1].code]);
-                }}
-                value={value}
-              >
-                <div className={style.status}>
-                  <div className={style.balance}>
-                    <span>Balance: </span>
-                    {CurrencyTypes[code].sign}
-                    {state.pocket.vault[code].balance}
-                  </div>
-
-                  <div className={style.message}>
-                    <span>not enough funds</span>
-                  </div>
+      <div className={style.fieldGroup}>
+        {state.exchangeNew.map(field => (
+          <div className={style.entry} key={`${field.currency}`}>
+            <CurrencyField
+              key={`${field.key}`}
+              activeItem={field.currency}
+              currencyValue={field.value}
+              onCurrencyTypeChange={value => {
+                dispatch({ type: 'CHANGE', currency: value, key: field.key });
+              }}
+              onCurrencyValueChange={event => {
+                dispatch({
+                  type: 'VALUE',
+                  value: event.target.value,
+                  key: field.key,
+                });
+              }}
+            >
+              <div className={style.status}>
+                <div className={style.balance}>
+                  <span>Balance: </span>
+                  {/* {`${state.exchangeNew[item].currency.currencySymbol}`} */}
+                  {0}
                 </div>
-              </CurrencyField>
-            </div>
-          );
-        })}
+
+                <div className={style.message}>
+                  <span>not enough funds</span>
+                </div>
+              </div>
+            </CurrencyField>
+          </div>
+        ))}
 
         <ExchangeFormSwapAction
           onClick={() => {
@@ -68,9 +58,9 @@ function ExchangeForm(props) {
           }}
         />
 
-        {!isLoading && (
-          <ExchangeFormChartAction onClick={props.onClickChartAction} ratio={data.rates[state.exchange[1].code]} />
-        )}
+        <div className={style.chart} onClick={props.onClickChartAction}>
+          <ExchangeFormRatioInfo />
+        </div>
       </div>
 
       <footer className={style.actions}>

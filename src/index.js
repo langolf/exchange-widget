@@ -7,8 +7,11 @@ import './index.css';
 import { useSpring, animated, useTransition } from 'react-spring';
 import { BrowserRouter, Switch, Route, Link, useLocation } from 'react-router-dom';
 import ScreenExchangeForm from './ui/ScreenExchangeForm/ScreenExchangeForm';
-import { AppProvider, useAppContext } from 'hooks/app-context';
+import store from 'hooks/app-context';
+import Provider from 'redhooks';
 import ScreenStart from 'ui/ScreenStart/ScreenStart';
+import useFetch from 'react-fetch-hook';
+import ExchangeForm from 'ui/ExchangeForm/ExchangeForm';
 
 export default function App() {
   const { state, dispatch } = useAppContext();
@@ -20,8 +23,8 @@ export default function App() {
   });
 
   return (
-    <AppProvider>
-      <div className="app">
+    <Provider store={store}>
+      {/* <div className="app">
         {transitions.map(({ item: location, props, key }) => (
           <animated.div key={key} style={{ position: 'fixed', width: '100vw', height: '100vh', ...props }}>
             <Switch location={location}>
@@ -35,8 +38,9 @@ export default function App() {
             </Switch>
           </animated.div>
         ))}
-      </div>
-    </AppProvider>
+      </div> */}
+      <ExchangeForm />
+    </Provider>
   );
 }
 

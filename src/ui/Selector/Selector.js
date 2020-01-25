@@ -5,26 +5,29 @@ import { ReactComponent as IconArrow } from './icon-arrow-down.svg';
 import { useAppContext } from 'hooks/app-context';
 import AppModal from 'ui/AppModal/AppModal';
 
-const Selector = ({ activeItem, isActive, onChange, list, dropdownContent, ...props }) => {
+const Selector = ({ activeItem, isActive, onChange, list, dropdownContent, dropdownLabel, dropdownMore, ...props }) => {
   const { state, dispatch } = useAppContext();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleDropdownOpen = () => {
+    setDropdownOpen(true);
+    dispatch({ type: 'MODAL', isOpen: true });
+  };
 
   return (
     <div className={style.root}>
       <select
-        key={props.key}
         onMouseDown={event => {
           event.preventDefault();
-          setDropdownOpen(true);
-          dispatch({ type: 'MODAL_OPEN' });
+          handleDropdownOpen();
         }}
-        value={activeItem}
+        defaultValue={activeItem}
         className={style.control}
         {...props}
       >
-        {list.map(({ code }) => (
-          <option value={code} key={code}>
-            {code}
+        {list.map(({ id }) => (
+          <option value={id} key={`${id}`}>
+            {id}
           </option>
         ))}
       </select>
@@ -36,12 +39,12 @@ const Selector = ({ activeItem, isActive, onChange, list, dropdownContent, ...pr
       {isDropdownOpen && (
         <AppModal isOpen={state.modalIsOpen}>
           <div className={style.dropdownContent}>
-            {props.dropdownLabel && <h3 className={style.dropdownLabel}>{props.dropdownLabel}</h3>}
+            {dropdownLabel && <h3 className={style.dropdownLabel}>{dropdownLabel}</h3>}
             {dropdownContent}
-            {props.dropdownMore && (
+            {dropdownMore && (
               <div className={style.more}>
                 <span className={style.moreIcon}>...</span>
-                {props.dropdownMore}
+                {dropdownMore}
               </div>
             )}
           </div>
@@ -49,7 +52,7 @@ const Selector = ({ activeItem, isActive, onChange, list, dropdownContent, ...pr
           <button
             className={style.buttonCancel}
             onClick={() => {
-              dispatch({ type: 'MODAL_OPEN' });
+              dispatch({ type: 'MODAL', isOpen: false });
             }}
           >
             Cancel

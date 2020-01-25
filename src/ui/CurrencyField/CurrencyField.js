@@ -2,20 +2,23 @@ import React, { useState, useRef, useDebugValue } from 'react';
 import clsx from 'clsx';
 import Selector from '../Selector/Selector.js';
 import style from './CurrencyField.module.css';
-import { CurrencyTypes, useAppContext } from 'hooks/app-context';
+import { useAppContext } from 'hooks/app-context';
+import currencyList from 'hooks/currencies';
 import CurrencyFieldInput from './CurrencyFieldInput';
 import CurrencyFieldSelector from './CurrencyFieldSelector';
 
 const CurrencyField = ({
   id,
   activeItem,
-  value,
+  currencyValue,
   balance,
   onCurrencyTypeChange,
   onCurrencyValueChange,
   ...props
 }) => {
   const { state, dispatch } = useAppContext();
+  const defaultCurrencyList = ['GBP', 'EUR', 'USD'];
+
   return (
     <div className={style.root}>
       <div className={style.field}>
@@ -23,15 +26,17 @@ const CurrencyField = ({
           <Selector
             key="selector"
             activeItem={activeItem}
-            list={Object.values(CurrencyTypes)}
+            list={Object.values(currencyList)}
+            dropdownLabel="Choose currency:"
+            dropdownMore="Other"
             dropdownContent={
               <ul className={style.selectorList}>
-                {Object.keys(CurrencyTypes).map(entry => (
+                {defaultCurrencyList.map(entry => (
                   <li
-                    key={entry}
+                    key={`${entry}`}
                     onClick={event => {
                       onCurrencyTypeChange(entry);
-                      dispatch({ type: 'MODAL_OPEN' });
+                      dispatch({ type: 'MODAL', isOpen: false });
                     }}
                     value={entry}
                   >
@@ -47,13 +52,11 @@ const CurrencyField = ({
                 ))}
               </ul>
             }
-            dropdownLabel="Choose currency:"
-            dropdownMore="Other"
           />
         </div>
 
         <div className={style.fieldInput}>
-          <CurrencyFieldInput onChange={onCurrencyValueChange} value={value} placeholder="0" />
+          <CurrencyFieldInput className={style.input} onChange={onCurrencyValueChange} placeholder="0" />
         </div>
       </div>
 

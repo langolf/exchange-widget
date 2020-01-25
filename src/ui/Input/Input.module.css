@@ -1,18 +1,23 @@
 .root {
   position: relative;
+  display: flex;
   width: 100%;
+  flex: 1 1 auto;
 }
 
 .input {
   background: transparent;
-  width: 100%;
+  display: block;
+  flex: 1 1 auto;
   font-size: 32px;
   color: #000;
   border: 0;
+  width: 100%;
   -webkit-appearance: none;
+  max-width: 100%;
+  min-width: 0;
   outline: none;
   line-height: 1.4;
-  text-align: right;
   padding: 0;
   margin: 0;
 }

@@ -1,22 +1,9 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import constate from 'constate';
+import currencyList from 'hooks/currencies';
+import { createStore, combineReducers } from 'redhooks';
 
 const [AppProvider, useAppContext] = constate(useApp);
-
-export const CurrencyTypes = {
-  GBP: {
-    code: 'GBP',
-    sign: '£',
-  },
-  EUR: {
-    code: 'EUR',
-    sign: '€',
-  },
-  USD: {
-    code: 'USD',
-    sign: '$',
-  },
-};
 
 export const AppScreen = {
   EXCHANGE: 'EXCHANGE',
@@ -32,61 +19,67 @@ export const initialState = {
       USD: { code: 'USD', balance: 0.0 },
     },
   },
-  // from-to should not change thier position. only codes
-  exchange: [
-    { code: 'GBP', value: '', field: 'from' },
-    { code: 'EUR', value: '', field: 'to' },
+  exchangeNew: [
+    { currency: 'GBP', key: 'SOURCE', value: null },
+    { currency: 'EUR', key: 'TARGET', value: null },
   ],
   modalIsOpen: false,
   page: [AppScreen.EXCHANGE],
 };
 
-function reducer(state, action) {
+function exchangeFormReducer(type, payload) {
   switch (action.type) {
     case 'VALUE':
       return {
         ...state,
-        exchange: state.exchange.map(entry =>
-          entry.field === action.field ? { ...entry, value: action.amount } : entry
-        ),
+        exchangeNew: state.exchangeNew.map(field => {
+          if (field.key === action.key) {
+            return { ...field, value: action.value };
+          }
+
+          return field;
+        }),
       };
     case 'CHANGE':
       return {
         ...state,
-        exchange: state.exchange.map(entry => {
-          if (entry.field === action.field) {
-            return { ...entry, code: action.code };
+        exchangeNew: state.exchangeNew.map(field => {
+          if (field.key === action.key) {
+            return { ...field, currency: action.currency };
           }
 
-          if (entry.code === action.code) {
-            return {
-              ...entry,
-              code: Object.values(CurrencyTypes).find(el => el.code !== action.code).code,
-            };
-          }
-
-          return entry;
+          return field;
         }),
       };
     case 'SWAP':
       return {
         ...state,
-        exchange: [state.exchange[1], state.exchange[0]],
+        exchangeNew: state.exchangeNew.map((field, idx) => {
+          if (field.key === 'SOURCE') {
+            const { currency, value } = state.exchangeNew.find(el => el.key === 'TARGET');
+            console.log(`swap 1`);
+
+            return { ...field, currency, value };
+          }
+
+          if (field.key === 'TARGET') {
+            const { currency, value } = state.exchangeNew.find(el => el.key === 'SOURCE');
+            console.log(`swap 2`);
+            return { ...field, currency, value };
+          }
+
+          return field;
+        }),
       };
-    case 'MODAL_OPEN':
+    case 'MODAL':
       return {
         ...state,
-        modalIsOpen: !state.modalIsOpen,
+        modalIsOpen: action.isOpen,
       };
     default:
       return state;
   }
 }
+const store = createStore({ exchangeFormReducer });
 
-function useApp() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  return { state, dispatch };
-}
-
-export { AppProvider, useAppContext };
+export default store;
