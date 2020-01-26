@@ -4,23 +4,25 @@ import CurrencySelector from 'ui/CurrencySelector/CurrencySelector';
 import Input from 'ui/Input/Input';
 import { useStore } from 'redhooks';
 
-const ExchangeFormCurrencyField = ({ type, onCurrencyTypeChange, onCurrencyValueChange }) => {
+const ExchangeFormCurrencyField = ({ id, value, onCurrencyTypeChange, onCurrencyValueChange }) => {
   const { state, dispatch } = useStore();
+  const { currency } = state.exchange.fields.find(el => el.id === id);
+
   return (
     <div className={style.currencyField}>
       <div className={style.currencyFieldSelector}>
-        <CurrencySelector key={`${type}-select`} activeItem={type} onChange={onCurrencyTypeChange} />
+        <CurrencySelector activeItem={currency} onChange={code => onCurrencyTypeChange(code)} key={id} />
       </div>
 
       <div className={style.currencyFieldInput}>
         <Input
-          key={`${type}-input`}
+          key={`${id}-input`}
           inputMode="numeric"
           pattern="[0-9]*"
           placeholder="0"
-          value={state.exchange.find(el => el.key === type).value}
+          value={value}
           onChange={onCurrencyValueChange}
-          valuePrefix={type === 'SOURCE' ? '-' : '+'}
+          valuePrefix={id === 'SOURCE' ? '-' : '+'}
         />
       </div>
     </div>

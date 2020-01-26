@@ -1,3 +1,10 @@
+:root {
+  --text-color-base: #181d20;
+  --text-color-error: #eb008d;
+  --text-color-secondary: #8a95a0;
+  --text-color-link: #0075eb;
+}
+
 *,
 *::before,
 *::after {
@@ -7,11 +14,12 @@
 html {
   width: 100%;
   height: 100%;
+  background: #000;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,6 +27,7 @@ body {
   text-rendering: geometricPrecision;
   font-kerning: normal;
   height: 100%;
+  color: var(--text-color-base);
 }
 
 code {

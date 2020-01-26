@@ -12,6 +12,7 @@
   line-height: 1.4;
   margin: 0;
   padding: 0;
+  color: var(--text-color-base);
 }
 
 .icon {
@@ -19,51 +20,4 @@
   width: 18px;
   height: 18px;
   margin-right: 10px;
-}
-
-.dropdownContent {
-  background: #fff;
-  border-radius: 10px;
-}
-
-.more {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 12px 15px;
-  color: var(--link-color);
-}
-
-.moreIcon {
-  display: flex;
-  justify-content: center;
-  background: #f3f4f4;
-  color: #ced4dc;
-  font-size: 24px;
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
-  border-radius: 100%;
-  margin-right: 15px;
-}
-
-.buttonCancel {
-  padding: 15px 15px;
-  text-align: center;
-  background-color: #fff;
-  border-radius: 10px;
-  width: 100%;
-  font-size: 20px;
-  letter-spacing: -0.8px;
-  font-weight: 500;
-  color: var(--link-color);
-  margin-top: 8px;
-}
-
-.dropdownLabel {
-  padding: 23px 15px;
-  color: #8b949e;
-  margin: 0;
-  font: normal 14px -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }

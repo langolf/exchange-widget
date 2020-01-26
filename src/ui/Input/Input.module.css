@@ -1,37 +1,25 @@
 .root {
   position: relative;
   display: flex;
+  flex: 1 1 auto;
+  width: 100%;
   max-width: 100%;
-  overflow: hidden;
   font-size: 32px;
   color: #000;
   line-height: 1.4;
-}
-
-.inputFake {
-  display: inline-block;
-  min-width: 0;
-  outline: 1px dashed tomato;
-}
-
-.inputFake::before {
-  content: attr(data-sign);
-  display: inline-block;
-  position: relative;
+  overflow: hidden;
 }
 
 .input {
+  text-align: right;
   background: transparent;
   border: 0;
   -webkit-appearance: none;
-  outline: none;
+  outline: 0;
   padding: 0;
   margin: 0;
-  position: absolute;
-  left: 0;
-  top: 0;
+  min-width: 0;
   width: 100%;
+  flex: 1;
   height: 100%;
-  color: #fff;
-  font-size: 0;
 }

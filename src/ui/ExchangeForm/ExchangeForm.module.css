@@ -24,11 +24,11 @@
   display: flex;
   align-items: center;
   min-width: 0;
+  margin-bottom: 20px;
 }
 
-.currencyFieldSelector,
-.currencyFieldInput {
-  flex: 1 1 auto;
+.currencyFieldSelector {
+  flex: 0 0 auto;
 }
 
 .currencyFieldInput {
@@ -36,6 +36,7 @@
   justify-content: flex-end;
   min-width: 0;
   max-width: 100%;
+  flex: 1;
 }
 
 .swap {
@@ -86,16 +87,16 @@
   margin-right: 4px;
 }
 
-.actions {
+.submit {
   display: flex;
   flex-direction: column;
   padding: 0 25px;
 }
 
-.status {
+.currencyStatus {
   display: flex;
   align-items: center;
-  color: #8a95a0;
+  color: var(--text-color-secondary);
   font-size: 14px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -110,4 +111,13 @@
   flex: 0 0 50%;
   display: flex;
   justify-content: flex-end;
+  white-space: nowrap;
+}
+
+.hasError {
+  color: var(--text-color-error);
+}
+
+.hasWarning {
+  color: var(--text-color-secondary);
 }

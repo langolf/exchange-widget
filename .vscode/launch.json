@@ -2,14 +2,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Chrome",
+      "name": "Chrome canary",
       "type": "chrome",
       "request": "launch",
       "runtimeExecutable": "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
+      "runtimeArgs": ["--incognito", "--remote-debugging-port=9222"],
+      "userDataDir": "${workspaceRoot}/.vscode/chrome",
       "url": "http://localhost:3000",
-      "disableNetworkCache": true,
       "smartStep": true,
-      "webRoot": "${workspaceFolder}/out",
+      "webRoot": "${workspaceFolder}/src",
       "sourceMapPathOverrides": {
         "webpack:///src/*": "${webRoot}/*"
       }

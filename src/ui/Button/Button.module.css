@@ -1,6 +1,10 @@
 .button {
-    display: inline-flex;
-    border: 0;
-    background: none;
-    justify-content: center;
+  display: inline-flex;
+  border: 0;
+  background: none;
+  justify-content: center;
+}
+
+.isDisabled {
+  opacity: 0.4;
 }

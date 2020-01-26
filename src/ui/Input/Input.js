@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import style from './Input.module.css';
 
-const Input = ({ value, onChange, className, styles, ...props }) => {
+const Input = ({ value, onChange, className, styles, valuePrefix, ...props }) => {
   return (
     <div
       className={clsx({
@@ -10,10 +10,7 @@ const Input = ({ value, onChange, className, styles, ...props }) => {
         [className]: true,
       })}
     >
-      <div data-sign={props.valuePrefix} className={style.inputFake}>
-        {value}
-      </div>
-      <input value={value} type={props.type || 'text'} className={style.input} onChange={onChange} {...props} />
+      <input size={1} onChange={onChange} type={props.type || 'text'} className={style.input} {...props} />
     </div>
   );
 };
