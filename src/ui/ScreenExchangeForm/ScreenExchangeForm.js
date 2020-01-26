@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import Screen from 'ui/Screen/Screen';
 import ExchangeForm from 'ui/ExchangeForm/ExchangeForm';
 import ScreenChart from 'ui/ScreenChart/ScreenChart';
-import { useTransition, animated, useSpring } from 'react-spring';
+import { animated, useSpring } from 'react-spring';
 import { ReactComponent as IconBack } from './icon-back.svg';
-import Icon from 'ui/Icon/Icon';
 
 const ScreenExchangeForm = props => {
   const [isChart, setChart] = useState(false);
@@ -45,4 +44,5 @@ const ScreenExchangeForm = props => {
     </Screen>
   );
 };
+
 export default ScreenExchangeForm;

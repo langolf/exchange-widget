@@ -1,24 +1,24 @@
 import React from 'react';
 import * as serviceWorker from './serviceWorker';
-
 import { render } from 'react-dom';
 import './index.css';
 import 'normalize.css';
 import 'currency-flags/dist/currency-flags.css';
 import { useSpring, animated, useTransition } from 'react-spring';
 import { BrowserRouter, Switch, Route, Link, useLocation } from 'react-router-dom';
-import Provider, { useStore, createStore, combineReducers } from 'redhooks';
+import Provider, { createStore, combineReducers } from 'redhooks';
 
-import ScreenExchangeForm from './ui/ScreenExchangeForm/ScreenExchangeForm';
-import ScreenStart from 'ui/ScreenStart/ScreenStart';
 import exchange from 'hooks/exchangeReducer';
 import userPocket from 'hooks/userPocketReducer';
 import appReducer from 'hooks/appReducer';
 
+import ScreenExchangeForm from './ui/ScreenExchangeForm/ScreenExchangeForm';
+import ScreenStart from 'ui/ScreenStart/ScreenStart';
+
 const rootReducer = combineReducers({ appReducer, userPocket, exchange });
 const store = createStore(rootReducer);
 
-export default function App() {
+const App = () => {
   const location = useLocation();
   const transitions = useTransition(location, location => location.pathname, {
     from: { opacity: 0.8, transform: 'translate3d(0,50%,0) scale(1.6)' },
@@ -45,7 +45,7 @@ export default function App() {
       </div>
     </Provider>
   );
-}
+};
 
 render(
   <BrowserRouter>

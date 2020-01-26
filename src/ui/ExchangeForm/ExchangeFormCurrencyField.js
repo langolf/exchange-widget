@@ -20,6 +20,7 @@ const ExchangeFormCurrencyField = ({ type, onCurrencyTypeChange, onCurrencyValue
           placeholder="0"
           value={state.exchange.find(el => el.key === type).value}
           onChange={onCurrencyValueChange}
+          valuePrefix={type === 'SOURCE' ? '-' : '+'}
         />
       </div>
     </div>

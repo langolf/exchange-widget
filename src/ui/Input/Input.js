@@ -10,7 +10,9 @@ const Input = ({ value, onChange, className, styles, ...props }) => {
         [className]: true,
       })}
     >
-      <div className={style.inputFake}>{value}</div>
+      <div data-sign={props.valuePrefix} className={style.inputFake}>
+        {value}
+      </div>
       <input value={value} type={props.type || 'text'} className={style.input} onChange={onChange} {...props} />
     </div>
   );
