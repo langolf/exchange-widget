@@ -1,23 +1,6 @@
 .root {
   display: flex;
-  flex-direction: column;
-  padding: 0 25px;
-}
-
-.field {
-  display: flex;
-  margin-bottom: 15px;
-}
-
-.fieldSelector {
-  flex: 0 0 auto;
-}
-
-.fieldInput {
-  flex: 1 1 auto;
-  display: flex;
   align-items: center;
-  min-width: 0;
 }
 
 .selectorList {

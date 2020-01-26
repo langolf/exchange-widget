@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import CurrencyField from '../CurrencyField/CurrencyField.js';
 import PrimaryButton from '../PrimaryButton/PrimaryButton.js';
 import style from './ExchangeForm.module.css';
-import useFetch from 'react-fetch-hook';
-import { animated, useSpring } from 'react-spring';
-
 import currencyList from 'hooks/currencies';
-import { useAppContext } from 'hooks/app-context';
+import ExchageFormCurrencyField from './ExchangeFormCurrencyField';
+import ExchangeFormCurrencyStatus from './ExchangeFormCurrencyStatus';
 import ExchangeFormSwapAction from './ExchangeFormSwapAction';
 import ExchangeFormRatioInfo from './ExchangeFormRatioInfo';
+import useFetch from 'react-fetch-hook';
+import { useStore } from 'redhooks';
 
 function ExchangeForm(props) {
-  const { state, dispatch } = useAppContext();
+  const { state, dispatch } = useStore();
+  const { isLoading, data } = useFetch(
+    `https://api.exchangeratesapi.io/latest?&base=${state.exchange[0].currency}&symbols=${state.exchange[1].currency}`
+  );
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -19,36 +21,25 @@ function ExchangeForm(props) {
 
   return (
     <form className={style.root} onSubmit={handleSubmit}>
-      <div className={style.fieldGroup}>
-        {state.exchangeNew.map(field => (
-          <div className={style.entry} key={`${field.currency}`}>
-            <CurrencyField
-              key={`${field.key}`}
-              activeItem={field.currency}
-              currencyValue={field.value}
+      <fieldset className={style.exchangeGroup}>
+        {Object.values(state.exchange).map(({ currency, key, value }) => (
+          <div className={style.exchangeField} key={`${key}`}>
+            <ExchageFormCurrencyField
+              type={key}
+              currency={currency}
               onCurrencyTypeChange={value => {
-                dispatch({ type: 'CHANGE', currency: value, key: field.key });
+                dispatch({ type: 'CHANGE', currency: value, key });
               }}
               onCurrencyValueChange={event => {
                 dispatch({
                   type: 'VALUE',
                   value: event.target.value,
-                  key: field.key,
+                  key,
                 });
               }}
-            >
-              <div className={style.status}>
-                <div className={style.balance}>
-                  <span>Balance: </span>
-                  {/* {`${state.exchangeNew[item].currency.currencySymbol}`} */}
-                  {0}
-                </div>
+            />
 
-                <div className={style.message}>
-                  <span>not enough funds</span>
-                </div>
-              </div>
-            </CurrencyField>
+            <ExchangeFormCurrencyStatus currency={state.userPocket.vault[currency]} />
           </div>
         ))}
 
@@ -58,13 +49,11 @@ function ExchangeForm(props) {
           }}
         />
 
-        <div className={style.chart} onClick={props.onClickChartAction}>
-          <ExchangeFormRatioInfo />
-        </div>
-      </div>
+        {isLoading && <ExchangeFormRatioInfo data={data} onClick={props.onClickChartAction} />}
+      </fieldset>
 
-      <footer className={style.actions}>
-        <PrimaryButton type="submit" text="Hello World" />
+      <footer className={style.submit}>
+        <PrimaryButton type="submit" text="Exchange" />
       </footer>
     </form>
   );

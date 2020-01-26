@@ -2,29 +2,20 @@ import React, { useState } from 'react';
 import style from './Selector.module.css';
 import { ReactComponent as IconArrow } from './icon-arrow-down.svg';
 
-import { useAppContext } from 'hooks/app-context';
+import { useStore } from 'redhooks';
 import AppModal from 'ui/AppModal/AppModal';
 
 const Selector = ({ activeItem, isActive, onChange, list, dropdownContent, dropdownLabel, dropdownMore, ...props }) => {
-  const { state, dispatch } = useAppContext();
+  const { state, dispatch } = useStore();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleDropdownOpen = () => {
     setDropdownOpen(true);
-    dispatch({ type: 'MODAL', isOpen: true });
   };
 
   return (
     <div className={style.root}>
-      <select
-        onMouseDown={event => {
-          event.preventDefault();
-          handleDropdownOpen();
-        }}
-        defaultValue={activeItem}
-        className={style.control}
-        {...props}
-      >
+      <select defaultValue={activeItem} className={style.control}>
         {list.map(({ id }) => (
           <option value={id} key={`${id}`}>
             {id}
@@ -36,8 +27,8 @@ const Selector = ({ activeItem, isActive, onChange, list, dropdownContent, dropd
         <IconArrow />
       </div>
 
-      {isDropdownOpen && (
-        <AppModal isOpen={state.modalIsOpen}>
+      {state.appReducer.isModalOpen && (
+        <AppModal isOpen={state.appReducer.isModalOpen}>
           <div className={style.dropdownContent}>
             {dropdownLabel && <h3 className={style.dropdownLabel}>{dropdownLabel}</h3>}
             {dropdownContent}
@@ -51,7 +42,8 @@ const Selector = ({ activeItem, isActive, onChange, list, dropdownContent, dropd
 
           <button
             className={style.buttonCancel}
-            onClick={() => {
+            onClick={e => {
+              e.stopPropagation();
               dispatch({ type: 'MODAL', isOpen: false });
             }}
           >

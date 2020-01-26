@@ -1,20 +1,24 @@
 import React from 'react';
 import * as serviceWorker from './serviceWorker';
-import 'normalize.css';
-import 'currency-flags/dist/currency-flags.css';
+
 import { render } from 'react-dom';
 import './index.css';
+import 'normalize.css';
+import 'currency-flags/dist/currency-flags.css';
 import { useSpring, animated, useTransition } from 'react-spring';
 import { BrowserRouter, Switch, Route, Link, useLocation } from 'react-router-dom';
+import Provider, { useStore, createStore, combineReducers } from 'redhooks';
+
 import ScreenExchangeForm from './ui/ScreenExchangeForm/ScreenExchangeForm';
-import store from 'hooks/app-context';
-import Provider from 'redhooks';
 import ScreenStart from 'ui/ScreenStart/ScreenStart';
-import useFetch from 'react-fetch-hook';
-import ExchangeForm from 'ui/ExchangeForm/ExchangeForm';
+import exchange from 'hooks/exchangeReducer';
+import userPocket from 'hooks/userPocketReducer';
+import appReducer from 'hooks/appReducer';
+
+const rootReducer = combineReducers({ appReducer, userPocket, exchange });
+const store = createStore(rootReducer);
 
 export default function App() {
-  const { state, dispatch } = useAppContext();
   const location = useLocation();
   const transitions = useTransition(location, location => location.pathname, {
     from: { opacity: 0.8, transform: 'translate3d(0,50%,0) scale(1.6)' },
@@ -24,7 +28,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      {/* <div className="app">
+      <div className="app">
         {transitions.map(({ item: location, props, key }) => (
           <animated.div key={key} style={{ position: 'fixed', width: '100vw', height: '100vh', ...props }}>
             <Switch location={location}>
@@ -38,8 +42,7 @@ export default function App() {
             </Switch>
           </animated.div>
         ))}
-      </div> */}
-      <ExchangeForm />
+      </div>
     </Provider>
   );
 }

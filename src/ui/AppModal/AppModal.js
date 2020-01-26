@@ -11,8 +11,8 @@ const AppModal = ({ children, onCancelClick, ...props }) => {
 
   return (
     <Modal
+      ariaHideApp={false}
       isOpen={props.isOpen}
-      ariaHideApp={true}
       style={{
         overlay: { backgroundColor: 'rgba(0,0,0, .5)', zIndex: 100 },
         content: {
@@ -35,7 +35,7 @@ const AppModal = ({ children, onCancelClick, ...props }) => {
             <animated.div key={key} style={{ borderRadius: 10, ...props }}>
               {children}
             </animated.div>
-          ),
+          )
       )}
     </Modal>
   );

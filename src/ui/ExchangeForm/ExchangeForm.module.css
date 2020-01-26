@@ -2,16 +2,40 @@
   display: block;
 }
 
-.entry {
-  padding: 30px 0;
-}
-
-.entry:first-child {
-  background: #fff;
-}
-
-.fieldGroup {
+.exchangeGroup {
   position: relative;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.exchangeField {
+  padding: 30px 30px;
+  background: #fff;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.exchangeField:not(:first-child) {
+  background: #f3f4f5;
+}
+
+.currencyField {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.currencyFieldSelector,
+.currencyFieldInput {
+  flex: 1 1 auto;
+}
+
+.currencyFieldInput {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .swap {
@@ -21,7 +45,6 @@
   transform: translate(-50%, -50%);
   width: 32px;
   height: 32px;
-  border: 2px solid #f3f4f5;
   border-radius: 100px;
   background: #fff;
   display: flex;

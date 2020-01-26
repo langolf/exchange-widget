@@ -2,16 +2,16 @@ import React from 'react';
 import Screen from 'ui/Screen/Screen';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-import { useAppContext } from 'hooks/app-context';
 import Icon from 'ui/Icon/Icon';
 import { ReactComponent as IconArrow } from './icon-arrow-down.svg';
 import currencyList from 'hooks/currencies';
 import CircleButton from 'ui/CircleButton/CircleButton';
 import style from './ScreenStart.module.css';
+import { useStore } from 'redhooks';
 
 const ScreenStart = props => {
-  const { state, dispatch } = useAppContext();
-  const [base, float] = state.pocket.vault.GBP.balance.toString().split('.');
+  const { state, dispatch } = useStore();
+  const [base, float] = [1, 1];
 
   return (
     <Screen>
