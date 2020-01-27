@@ -4,8 +4,9 @@ import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import Icon from 'ui/Icon/Icon';
 import { ReactComponent as IconArrow } from './icon-arrow-down.svg';
-import { ReactComponent as IconRefresh } from './icon-arrow-down.svg';
-import { ReactComponent as IconInfo } from './icon-arrow-down.svg';
+import { ReactComponent as IconExchange } from './icon-exchange.svg';
+import { ReactComponent as IconInfo } from './icon-info.svg';
+import { ReactComponent as IconAdd } from './icon-add.svg';
 import currencyList from 'helpers/currencies';
 import CircleButton from 'ui/CircleButton/CircleButton';
 import style from './ScreenStart.module.css';
@@ -49,11 +50,11 @@ const ScreenStart = props => {
         </div>
 
         <div className={style.boardActions}>
-          <CircleButton title="Add Money" icon={<IconArrow />} />
+          <CircleButton title="Add Money" icon={<IconAdd />} isDisabled={true} />
 
-          <CircleButton title="Exchange" icon={<IconRefresh />} to="/exchange" />
+          <CircleButton title="Exchange" icon={<IconExchange />} to="/exchange" />
 
-          <CircleButton title="Details" icon={<IconInfo />} />
+          <CircleButton title="Details" icon={<IconInfo />} isDisabled={true} />
         </div>
       </div>
     </Screen>

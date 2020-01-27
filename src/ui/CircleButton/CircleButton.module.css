@@ -33,3 +33,7 @@
   width: 16px;
   height: 16px;
 }
+
+.isDisabled {
+  opacity: 0.5;
+}

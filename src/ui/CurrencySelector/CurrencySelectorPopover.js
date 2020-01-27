@@ -2,10 +2,13 @@ import React from 'react';
 import clsx from 'clsx';
 import AppModal from 'ui/AppModal/AppModal';
 import style from './CurrencySelector.module.css';
+import { useStore } from 'redhooks';
 import Button from 'ui/Button/Button';
 
 const CurrencySelectorPopover = ({ isOpen, onClose, onChange }) => {
-  const defaultCurrencyList = ['GBP', 'EUR', 'USD'];
+  const { state } = useStore();
+  const { vault } = state.userPocket;
+
   return (
     <AppModal
       onRequestClose={() => {
@@ -17,12 +20,12 @@ const CurrencySelectorPopover = ({ isOpen, onClose, onChange }) => {
         <h3 className={style.dropdownLabel}>Choose currency:</h3>
         {
           <ul className={style.selectorList}>
-            {defaultCurrencyList.map((entry, idx) => {
+            {Object.values(vault).map(({ id, balance }) => {
               return (
                 <li
-                  key={`${entry}-${idx}`}
+                  key={id}
                   onClick={() => {
-                    onChange(entry);
+                    onChange(id);
                     onClose();
                   }}
                 >
@@ -30,18 +33,17 @@ const CurrencySelectorPopover = ({ isOpen, onClose, onChange }) => {
                     className={clsx({
                       [style.flag]: true,
                       'currency-flag': true,
-                      [`currency-flag-${entry.toLowerCase()}`]: true,
+                      [`currency-flag-${id.toLowerCase()}`]: true,
                     })}
                   />
-                  {entry}
+                  <strong style={{ marginRight: 5 }}>{id}</strong>
+                  {'•'}
+                  <b style={{ marginLeft: 5 }}>{balance}</b>
                 </li>
               );
             })}
           </ul>
         }
-        <div className={style.more}>
-          <span className={style.moreIcon}>...</span> Other:
-        </div>
       </div>
 
       <Button
