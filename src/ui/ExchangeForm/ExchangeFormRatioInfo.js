@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from 'ui/Icon/Icon';
 import { ReactComponent as IconRiseChart } from './icon-rise-chart.svg';
 import style from './ExchangeForm.module.css';
-import currencyList from 'hooks/currencies';
+import currencyList from 'helpers/currencies';
 import { useStore } from 'redhooks';
 import useFetch from 'react-fetch-hook';
 

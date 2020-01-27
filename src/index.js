@@ -8,9 +8,9 @@ import { useSpring, animated, useTransition } from 'react-spring';
 import { BrowserRouter, Switch, Route, Link, useLocation } from 'react-router-dom';
 import Provider, { createStore, combineReducers } from 'redhooks';
 
-import exchange from 'hooks/exchangeReducer';
-import userPocket from 'hooks/userPocketReducer';
-import appReducer from 'hooks/appReducer';
+import exchange from 'reducers/exchangeReducer';
+import userPocket from 'reducers/userPocketReducer';
+import appReducer from 'reducers/appReducer';
 
 import ScreenExchangeForm from './ui/ScreenExchangeForm/ScreenExchangeForm';
 import ScreenStart from 'ui/ScreenStart/ScreenStart';

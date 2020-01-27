@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from 'ui/Button/Button';
 import Icon from 'ui/Icon/Icon';
 import style from './CircleButton.module.css';
 import { Link } from 'react-router-dom';

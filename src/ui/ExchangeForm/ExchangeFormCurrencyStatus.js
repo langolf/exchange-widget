@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import style from './ExchangeForm.module.css';
-import currencyList from 'hooks/currencies';
+import currencyList from 'helpers/currencies';
 import { useStore } from 'redhooks';
 import clsx from 'clsx';
 
