@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import style from './Input.module.css';
 
-const Input = ({ value, onChange, className, styles, valuePrefix, ...props }) => {
+const Input = ({ value, onChange, className, styles, type, ...props }) => {
   return (
     <div
       className={clsx({

@@ -4,7 +4,7 @@ import { useStore } from 'redhooks';
 
 import PrimaryButton from '../PrimaryButton/PrimaryButton.js';
 import style from './ExchangeForm.module.css';
-import currencyList from 'hooks/currencies';
+import currencyList from 'helpers/currencies';
 import ExchageFormCurrencyField from './ExchangeFormCurrencyField';
 import ExchangeFormCurrencyStatus from './ExchangeFormCurrencyStatus';
 import ExchangeFormSwapAction from './ExchangeFormSwapAction';

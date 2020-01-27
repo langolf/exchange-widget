@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import style from './Button.module.css';
 
-const Button = ({ children, className, isDisabled, ...props }) => {
+const Button = ({ children, className, isDisabled, type, ...props }) => {
   return (
     <button
       className={clsx({
@@ -11,7 +11,7 @@ const Button = ({ children, className, isDisabled, ...props }) => {
         [className]: true,
         [style.isDisabled]: isDisabled,
       })}
-      type={props.type || 'button'}
+      type={type || 'button'}
       disabled={isDisabled}
       {...props}
     >

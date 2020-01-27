@@ -12,16 +12,7 @@ const ScreenExchangeForm = props => {
   });
 
   return (
-    <Screen
-      onClickClose={() => {
-        if (isChart) {
-          setChart(true);
-        }
-      }}
-      title={!isChart ? 'Exchange' : 'GBP => EUR'}
-      closeIcon={isChart ? <IconBack /> : null}
-      styles={{ backgroundColor: '#F3F4F5' }}
-    >
+    <Screen title={!isChart ? 'Exchange' : 'GBP => EUR'} styles={{ backgroundColor: '#F3F4F5' }}>
       <animated.div
         style={{
           position: 'relative',

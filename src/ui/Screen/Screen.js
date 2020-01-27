@@ -4,23 +4,19 @@ import { Link } from 'react-router-dom';
 import Icon from 'ui/Icon/Icon';
 import { ReactComponent as IconClose } from './icon-close.svg';
 
-const Screen = ({ hasCloseAction = true, onClickClose, closeIcon, title, children, styles }) => {
+const Screen = ({ hasCloseAction = true, onClickClose, closeNavElement = false, title, children, styles }) => {
   return (
     <section className={style.root} style={styles}>
       <header className={style.header}>
-        {hasCloseAction ? (
-          <div
-            className={style.close}
-            onClick={event => {
-              event.stopPropagation();
-              onClickClose(event);
-            }}
-          >
+        {closeNavElement || (
+          <div className={style.closeElement}>
             <Link to="/">
-              <Icon>{closeIcon || <IconClose />}</Icon>
+              <Icon>
+                <IconClose />
+              </Icon>
             </Link>
           </div>
-        ) : null}
+        )}
         <h1 className={style.title}>{title}</h1>
       </header>
 

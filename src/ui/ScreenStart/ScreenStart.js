@@ -6,7 +6,7 @@ import Icon from 'ui/Icon/Icon';
 import { ReactComponent as IconArrow } from './icon-arrow-down.svg';
 import { ReactComponent as IconRefresh } from './icon-arrow-down.svg';
 import { ReactComponent as IconInfo } from './icon-arrow-down.svg';
-import currencyList from 'hooks/currencies';
+import currencyList from 'helpers/currencies';
 import CircleButton from 'ui/CircleButton/CircleButton';
 import style from './ScreenStart.module.css';
 import { useStore } from 'redhooks';
@@ -17,7 +17,7 @@ const ScreenStart = props => {
   const [integer, decimal] = balance.toString().split('.');
 
   return (
-    <Screen hasCloseAction={false}>
+    <Screen closeNavElement={true}>
       <div className={style.board}>
         <div className={style.boardCurrency}>
           <div className={style.boardCurrencyLine}>
