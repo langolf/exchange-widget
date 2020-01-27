@@ -15,7 +15,7 @@ const Button = ({ children, className, isDisabled, ...props }) => {
       disabled={isDisabled}
       {...props}
     >
-      <span>{children}</span>
+      {children}
     </button>
   );
 };

@@ -4,17 +4,27 @@ import { Link } from 'react-router-dom';
 import Icon from 'ui/Icon/Icon';
 import { ReactComponent as IconClose } from './icon-close.svg';
 
-const Screen = props => {
+const Screen = ({ hasCloseAction = true, onClickClose, closeIcon, title, children, styles }) => {
   return (
-    <section className={style.root} style={props.styles}>
+    <section className={style.root} style={styles}>
       <header className={style.header}>
-        <div className={style.close} onClick={props.onClickClose}>
-          <Icon>{props.closeIcon || <IconClose />}</Icon>
-        </div>
-        <h1 className={style.title}>{props.title}</h1>
+        {hasCloseAction ? (
+          <div
+            className={style.close}
+            onClick={event => {
+              event.stopPropagation();
+              onClickClose(event);
+            }}
+          >
+            <Link to="/">
+              <Icon>{closeIcon || <IconClose />}</Icon>
+            </Link>
+          </div>
+        ) : null}
+        <h1 className={style.title}>{title}</h1>
       </header>
 
-      <div className={style.content}>{props.children}</div>
+      <div className={style.content}>{children}</div>
     </section>
   );
 };

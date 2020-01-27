@@ -2,14 +2,23 @@ import React from 'react';
 import Button from 'ui/Button/Button';
 import Icon from 'ui/Icon/Icon';
 import style from './CircleButton.module.css';
+import { Link } from 'react-router-dom';
 
-const CircleButton = props => {
+const CircleButton = ({ title, children, icon, ...props }) => {
+  const Tag = props.to !== undefined ? Link : 'div';
+
   return (
-    <Button className={style.root} {...props}>
-      <span className={style.icon}>
-        <Icon>{props.children}</Icon>
+    <Tag className={style.root} {...props}>
+      <span className={style.inner}>
+        {icon && (
+          <span className={style.icon}>
+            <Icon>{children}</Icon>
+          </span>
+        )}
+
+        {title && <p className={style.title}>{title}</p>}
       </span>
-    </Button>
+    </Tag>
   );
 };
 

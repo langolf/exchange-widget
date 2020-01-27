@@ -16,8 +16,6 @@ const ScreenExchangeForm = props => {
       onClickClose={() => {
         if (isChart) {
           setChart(true);
-        } else {
-          window.location = '/';
         }
       }}
       title={!isChart ? 'Exchange' : 'GBP => EUR'}
@@ -27,6 +25,7 @@ const ScreenExchangeForm = props => {
       <animated.div
         style={{
           position: 'relative',
+          width: '100%',
           ...move,
         }}
       >

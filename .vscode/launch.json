@@ -4,12 +4,13 @@
     {
       "name": "Chrome canary",
       "type": "chrome",
-      "request": "launch",
-      "runtimeExecutable": "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
-      "runtimeArgs": ["--incognito", "--remote-debugging-port=9222"],
-      "userDataDir": "${workspaceRoot}/.vscode/chrome",
+      "request": "attach",
+      // "runtimeExecutable": "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
+      // "runtimeArgs": ["--remote-debugging-port=9222"],
+      // "userDataDir": "/Users/langolf/Library/Application Support/Google/Chrome Canary/Default",
       "url": "http://localhost:3000",
       "smartStep": true,
+      "port": 9222,
       "webRoot": "${workspaceFolder}/src",
       "sourceMapPathOverrides": {
         "webpack:///src/*": "${webRoot}/*"

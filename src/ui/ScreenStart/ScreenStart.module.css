@@ -4,6 +4,13 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  width: 100%;
+  margin: auto;
+  transform: translateY(-50%);
+}
+
+.boardCurrency {
+  margin-bottom: 40px;
 }
 
 .boardCurrencyLine {
@@ -42,4 +49,15 @@
 
 .boardCurrencyDescription > * + * {
   margin-left: 10px;
+}
+
+.boardActions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.boardActions > * {
+  flex: 1 1 100%;
 }

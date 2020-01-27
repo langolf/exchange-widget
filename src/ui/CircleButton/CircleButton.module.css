@@ -1,31 +1,35 @@
 .root {
-  background: blue;
+  display: block;
+  position: relative;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title {
+  color: var(--text-color-link);
+  width: 100%;
+  text-align: center;
+}
+
+.icon {
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  padding: 0;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-}
-
-.root > span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-}
-
-.icon {
-  width: 16px;
-  height: 16px;
+  overflow: hidden;
   flex: 0 0 auto;
-  margin: auto;
+  background: var(--color-action);
 }
 
-.icon > svg {
+.icon svg {
   width: 16px;
   height: 16px;
 }

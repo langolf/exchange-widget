@@ -1,4 +1,5 @@
 :root {
+  --color-action: #0275eb;
   --text-color-base: #181d20;
   --text-color-error: #eb008d;
   --text-color-secondary: #8a95a0;
@@ -19,6 +20,7 @@ html {
 
 body {
   margin: 0;
+  font-size: 14px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
@@ -38,6 +40,11 @@ code {
 #root,
 .app {
   display: contents;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color-base);
 }
 
 ul {

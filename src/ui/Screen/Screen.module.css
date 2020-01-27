@@ -13,6 +13,7 @@
   flex: 0 0 auto;
   display: flex;
   background-color: #fff;
+  height: 60px;
   align-items: center;
   position: relative;
   justify-content: center;
@@ -27,14 +28,17 @@
   flex: 1 1 auto;
   min-height: 0;
   min-width: 0;
+  display: flex;
 }
 
 .close {
   position: absolute;
+  z-index: 2;
   left: 20px;
   top: 50%;
   transform: translate(0, -50%);
   width: 14px;
   height: 14px;
   flex: 0 0 auto;
+  color: var(--text-color-base) !important;
 }

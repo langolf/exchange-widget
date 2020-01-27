@@ -1,5 +1,16 @@
 import React from 'react';
 import Screen from 'ui/Screen/Screen';
+import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
+
+const data = [];
+
+for (let i = 0; i < 20; i++) {
+  const series = [];
+  for (let j = 0; j < 100; j++) {
+    series.push({ x: j, y: (i / 10 + 1) * Math.sin((Math.PI * (i + j)) / 50) });
+  }
+  data.push({ color: i, key: i, data: series, opacity: 0.8 });
+}
 
 const ScreenChart = props => (
   <div
@@ -17,6 +28,16 @@ const ScreenChart = props => (
   >
     <h1>Header</h1>
     <button onClick={props.onClick}>Back to form</button>
+
+    <XYPlot width={300} height={300} colorType="linear" colorDomain={[0, 9]} colorRange={['yellow', 'orange']}>
+      <HorizontalGridLines />
+      <VerticalGridLines />
+      <XAxis />
+      <YAxis />
+      {data.map(props => (
+        <LineSeries {...props} />
+      ))}
+    </XYPlot>
   </div>
 );
 export default ScreenChart;
