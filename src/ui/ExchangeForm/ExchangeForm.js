@@ -61,7 +61,7 @@ const ExchangeForm = ({ onClickChartAction }) => {
           }}
         />
 
-        <ExchangeFormRatioInfo pair={[...state.exchange.fields.map(el => el.currency)]} onClick={onClickChartAction} />
+        <ExchangeFormRatioInfo onClick={onClickChartAction} />
       </fieldset>
 
       <footer className={style.submit}>
